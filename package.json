@@ -4,9 +4,9 @@
   "description": "",
   "main": "beer.js",
   "dependencies": {
+    "rakshithaevangeline-palindrome": "^0.1.0",
     "readline-sync": "^1.4.10"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,5 +20,4 @@
     "url": "https://github.com/rakshithaevangeline/js_tutorial/issues"
   },
   "homepage": "https://github.com/rakshithaevangeline/js_tutorial#readme"
-
 }
