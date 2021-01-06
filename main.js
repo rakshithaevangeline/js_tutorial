@@ -4,17 +4,19 @@ let Phrase = require("rakshithaevangeline-palindrome");
 function palindromeTester() {
   let content = prompt("Please type a phrase here:");
   let phrase = new Phrase(content);
+  let palindromeResult = document.querySelector("#palindromeResult");
   
   if (phrase.palindrome()) {
-    alert(`${phrase.content} is a palindrome!`);
+    palindromeResult.innerHTML = `"<strong>${phrase.content}</strong>" is a palindrome!`;
   } else {
-    alert(`${phrase.content} is not a palindrome.`);
+    palindromeResult.innerHTML = `"<strong>${phrase.content}</strong>" is not a palindrome.`;
   };
 }
 
-document.addEventListener("DOMContentLoaded", () =>{
+document.addEventListener("DOMContentLoaded", () => {
   let button = document.querySelector("#palindromeTester");
   button.addEventListener("click", () => {
   palindromeTester();
 });
 });
+
