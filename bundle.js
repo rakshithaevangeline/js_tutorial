@@ -2,23 +2,24 @@
 let Phrase = require("rakshithaevangeline-palindrome");
 
 
-function palindromeTester() {
-  let content = prompt("Please type a phrase here:");
+function palindromeTester(event) {
+  event.preventDefault();
+  let content = event.target.phrase.value;
   let phrase = new Phrase(content);
   let palindromeResult = document.querySelector("#palindromeResult");
   
   if (phrase.palindrome()) {
-    palindromeResult.innerHTML = `"<strong>${phrase.content}</strong>" is a palindrome!`;
+    palindromeResult.innerHTML = `"${phrase.content}" is a palindrome!`;
   } else {
-    palindromeResult.innerHTML = `"<strong>${phrase.content}</strong>" is not a palindrome.`;
+    palindromeResult.innerHTML = `"${phrase.content}" is not a palindrome.`;
   };
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   let button = document.querySelector("#palindromeTester");
-  button.addEventListener("click", () => {
-  palindromeTester();
-});
+  button.addEventListener("submit", (event) => {
+    palindromeTester(event);
+  });
 });
 
 
@@ -54,8 +55,12 @@ function Phrase(content) {
 
   // Returns true if the phrase is a palindrome , false otherwise.
   this.palindrome = function palindrome() {
-   return this.processedContent() === this.processedContent().reverse();
+    if (this.letters()) {
+      return this.processedContent() === this.processedContent().reverse();
+    } else {
+      return false;
+    }
+   
   };
-
 }
 },{}]},{},[1]);
