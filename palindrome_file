@@ -1,0 +1,14 @@
+#!/usr/local/bin/node
+
+let fs = require("fs");
+let Phrase = require("rakshithaevangeline-palindrome");
+
+let text = fs.readFileSync("phrases.txt", "utf-8");
+let palindromes = text.split("\n").filter((line) => {
+  return new Phrase(line).palindrome();
+});
+
+// Write into a txt file. The "data" should be string, not an array
+let palindromeText = palindromes.join("\n");
+console.log(palindromes);
+fs.writeFileSync("palindromes.txt", palindromeText);
