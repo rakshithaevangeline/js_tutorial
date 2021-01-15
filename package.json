@@ -4,6 +4,7 @@
   "description": "",
   "main": "beer.js",
   "dependencies": {
+    "axios": "^0.21.1",
     "rakshithaevangeline-palindrome": "^0.2.0",
     "readline-sync": "^1.4.10"
   },

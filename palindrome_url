@@ -1,0 +1,14 @@
+#!/usr/local/bin/node
+
+let axios = require("axios");
+let Phrase = require("rakshithaevangeline-palindrome");
+
+
+axios.get("https://cdn.learnenough.com/phrases.txt").then(response => {
+  let text = response.data;
+ 
+  let palindromes = (text.split("\n").filter(line => {
+   return (new Phrase(line).palindrome());
+ }));
+  console.log(palindromes);
+});
