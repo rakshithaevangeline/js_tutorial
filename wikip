@@ -1,0 +1,49 @@
+#!/usr/local/bin/node
+
+let axios = require("axios");
+let url = process.argv[2];
+let fs = require("fs");
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+
+// Scrape a wiki page for paragraphs sans reference numbers.
+let scrape = res => {
+  // Use the data from a URL and parse it to a virtual DOM
+  let dataFromURL = res.data;
+
+  let dom = new JSDOM(dataFromURL);
+  let document = dom.window.document;
+  
+  // Grab all the paragraphs and refernce objects from the DOM
+  let paragraphsNodeList = document.querySelectorAll("p"); 
+  let paragraphArray = Array.from(paragraphsNodeList);
+  let referencesNodeList = document.querySelectorAll("sup");
+ 
+  // Remove references from paragraphs
+  referencesNodeList.forEach(ref => {
+    ref.remove();
+  });
+
+  // Log the paragraphs sans references.
+  // querySelectorAll() returns a array like list called NodeList,
+  // iterate over the elements and grab the textcontent individually. 
+  let paragraphTextContentArray = paragraphArray.map(paragraph => {
+    // console.log(paragraph.textContent) 
+    return paragraph.textContent.trim();
+  });
+
+  // Write the contents into a txt file
+  let textContent = paragraphTextContentArray.join("\n");
+  let textFile = "wikiparagraphs.txt"
+  fs.writeFileSync(textFile, textContent);
+};
+
+// Exit the programme with exit codes.
+if (url) {
+  axios.get(url).then(scrape).then(() => {
+    console.log("Contents copied to wikiparagraphs.txt");
+  });
+} else {
+  console.log("Please enter a URL");
+  process.exit(1);
+}
