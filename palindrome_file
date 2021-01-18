@@ -3,7 +3,7 @@
 let fs = require("fs");
 let Phrase = require("rakshithaevangeline-palindrome");
 
-let text = fs.readFileSync("phrases.txt", "utf-8");
+let text = fs.readFileSync("/Users/rakshithaevangeline/learn-enough/repos/js_tutorial/phrases.txt", "utf-8");
 let palindromes = text.split("\n").filter((line) => {
   return new Phrase(line).palindrome();
 });
