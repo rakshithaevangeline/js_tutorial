@@ -5,6 +5,7 @@
   "main": "beer.js",
   "dependencies": {
     "axios": "^0.21.1",
+    "jsdom": "^16.4.0",
     "rakshithaevangeline-palindrome": "^0.2.0",
     "readline-sync": "^1.4.10"
   },
